@@ -7,7 +7,7 @@
   * 2a) What is the condition for a rectangle to also be a square? (not a trick question)
   * 2b) How can the Square class inherit the Rectangle class?
   * 2c) How can a rectangle instance inherit the `Square` prototype when it is actually a square?
-  * 2d) Given a `Square` instance, how can it lose the `Square` prototype when it is no longer a square?
+  * 2d) Given a `Square` instance, how can it lose th	e `Square` prototype when it is no longer a square?
 
 ##### 3. A trie (or radix tree, prefix tree) is a tree-like data structure that may be used for efficiently matching a string to a value, for example matching a URL route to a function, which is used for high performance routing. Each branch in this tree is valued by a prefix and a unique value, and this structure continues recursively until there are no more child branches. Given a list of words: "bear", "bears", "bearing", "beer", "boar", write a function that accepts these words as `(a, b, ...n)` and returns a trie.
 
