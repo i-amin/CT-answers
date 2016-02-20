@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>q2</title>
+</head>
+
+<body>
+    <script>
+    // parent class 
+    function Rectangle(width, hieght) {
+        this.width = width;
+        this.hieght = hieght;
+        if (width === hieght && !(this instanceof Square)) {
+            return new Square(width);
+        }
+    }
+    Rectangle.prototype.calcArea = function() {
+        return this.width * this.hieght;
+    };
+    Rectangle.prototype.setWidth = function(width) {
+        this.width = width;
+        return this;
+    };
+    Rectangle.prototype.setHieght = function(hieght) {
+        this.hieght = hieght;
+        return this;
+    };
+
+    // child class
+    function Square(size) {
+        Rectangle.call(this, size, size);
+    }
+    Square.prototype = Object.create(Rectangle.prototype);
+    Square.prototype.constructor = Square;
+    Square.prototype.setSize = function(size) {
+    	this.width = this.hieght = size;
+        return this;
+    };
+    Square.prototype.setWidth = function(width) {
+        return Rectangle.prototype.setWidth.call(this, width);
+    };
+    Square.prototype.setHieght = function(hieght) {
+        return Rectangle.prototype.setHieght.call(this, hieght);
+    };
+    </script>
+</body>
+
+</html>
