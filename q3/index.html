@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>q3</title>
+</head>
+
+<body>
+    <script>
+    function initTree() {
+        var words = arguments,
+            trie = {},
+            end = {};
+
+        for (var i = 0; i < words.length; i++) {
+            var word = words[i],
+                letters = word.split(""),
+                current = trie;
+
+            for (var j = 0; j < letters.length; j++) {
+                var letter = letters[j],
+                    pos = current[letter];
+
+                if (pos == null) { //new letter
+                    current = current[letter] = j === letters.length - 1 ? word : {};
+                } else if (typeof pos === "string") { // first letter value
+                    current = current[letter] = {
+                        $: pos
+                    };
+                } else {
+                    current = current[letter];
+                }
+            }
+        }
+
+        optimize(trie);
+
+        return trie;
+    }
+
+    function optimize(cur) {
+        var num = 0,
+            last;
+
+        for (var node in cur) {
+            if (typeof cur[node] === "object") {
+                var ret = optimize(cur[node]);
+
+                if (ret) {
+                    delete cur[node];
+                    cur[node + ret.name] = ret.value;
+                    node = node + ret.name;
+                }
+            }
+
+            last = node;
+            num++;
+        }
+
+        if (num === 1) {
+            return {
+                name: last,
+                value: cur[last]
+            };
+        }
+    }
+
+    function findWord(word, trie) {
+
+        var cur = trie,
+            res;
+
+
+        for (var node in cur) {
+
+            if (word.indexOf(node) === 0) {
+
+                var val = cur[node];
+
+                if (node.length === word.length) {
+                    // Return 'true' only if we've reached a final leaf
+                    res = typeof val === "string" ? val : val.$;
+
+                    // Otherwise continue traversing deeper
+                    // down the tree until we find a match
+                } else {
+                    return findWord(word.slice(node.length), val);
+                }
+            }
+        }
+
+        return res;
+    }
+
+    var res = initTree("bear", "bears", "bearing", "beer", "boar")
+    console.dir(res);
+    console.log('bearing');
+    </script>
+</body>
+
+</html>
