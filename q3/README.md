@@ -10,3 +10,8 @@
     * answer [link](https://github.com/ibrahem-amin/CT-answers/blob/master/q3/index.html#L69)
 
   * Bonus b): Explain the advantages and disadvantages of using a trie, versus the more common iteration through a list of regular expressions used for routing in web applications.
+    * advantages:
+      * takes less space.
+      * takes less time to search word of m characters to be on worest case O(m).
+    * disadvantages:
+      * if there is any special characters it my result long and meaningful prefixes 
