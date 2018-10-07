@@ -9,22 +9,22 @@
 <body>
     <script>
     // parent class 
-    function Rectangle(width, hieght) {
+    function Rectangle(width, height) {
         this.width = width;
-        this.hieght = hieght;
-        if (width === hieght && !(this instanceof Square)) {
+        this.height = height;
+        if (width === height && !(this instanceof Square)) {
             return new Square(width);
         }
     }
     Rectangle.prototype.calcArea = function() {
-        return this.width * this.hieght;
+        return this.width * this.height;
     };
     Rectangle.prototype.setWidth = function(width) {
         this.width = width;
         return this;
     };
-    Rectangle.prototype.setHieght = function(hieght) {
-        this.hieght = hieght;
+    Rectangle.prototype.setHieght = function(height) {
+        this.height = height;
         return this;
     };
 
@@ -35,14 +35,14 @@
     Square.prototype = Object.create(Rectangle.prototype);
     Square.prototype.constructor = Square;
     Square.prototype.setSize = function(size) {
-    	this.width = this.hieght = size;
+    	this.width = this.height = size;
         return this;
     };
     Square.prototype.setWidth = function(width) {
         return Rectangle.prototype.setWidth.call(this, width);
     };
-    Square.prototype.setHieght = function(hieght) {
-        return Rectangle.prototype.setHieght.call(this, hieght);
+    Square.prototype.setHieght = function(height) {
+        return Rectangle.prototype.setHieght.call(this, height);
     };
     </script>
 </body>
